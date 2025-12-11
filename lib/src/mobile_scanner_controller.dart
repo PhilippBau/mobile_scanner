@@ -133,7 +133,7 @@ class MobileScannerController extends ValueNotifier<MobileScannerState> {
   StreamSubscription<BarcodeCapture?>? _barcodesSubscription;
   StreamSubscription<TorchState>? _torchStateSubscription;
   StreamSubscription<double>? _zoomScaleSubscription;
-  StreamSubscription<DeviceOrientation>? _deviceOrientationSubscription;
+  // StreamSubscription<DeviceOrientation>? _deviceOrientationSubscription;
 
   bool _isDisposed = false;
   // This completer keeps track of whether the MobileScanner widget,
@@ -145,12 +145,12 @@ class MobileScannerController extends ValueNotifier<MobileScannerState> {
     unawaited(_barcodesSubscription?.cancel());
     unawaited(_torchStateSubscription?.cancel());
     unawaited(_zoomScaleSubscription?.cancel());
-    unawaited(_deviceOrientationSubscription?.cancel());
+    //unawaited(_deviceOrientationSubscription?.cancel());
 
     _barcodesSubscription = null;
     _torchStateSubscription = null;
     _zoomScaleSubscription = null;
-    _deviceOrientationSubscription = null;
+    //_deviceOrientationSubscription = null;
   }
 
   void _setupListeners() {
@@ -192,8 +192,8 @@ class MobileScannerController extends ValueNotifier<MobileScannerState> {
           value = value.copyWith(zoomScale: zoomScale);
         });
 
-    if (MobileScannerPlatform.instance
-        case final MethodChannelMobileScanner implementation
+    /*if (MobileScannerPlatform.instance
+      case final MethodChannelMobileScanner implementation
         when defaultTargetPlatform != TargetPlatform.macOS) {
       _deviceOrientationSubscription = implementation
           .deviceOrientationChangedStream
@@ -204,7 +204,7 @@ class MobileScannerController extends ValueNotifier<MobileScannerState> {
 
             value = value.copyWith(deviceOrientation: orientation);
           });
-    }
+    }*/
   }
 
   void _throwIfNotInitialized() {
